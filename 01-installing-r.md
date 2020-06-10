@@ -1,13 +1,3 @@
----
-title: "01 -- Installing R"
-author: Sebastian Raschka
-output:
-  github_document:
-    fig_width: 5
-    toc: true
-    toc_depth: 2
----
-
 # About R
 
 - R is a programming language that is commonly used for statistical analyses and plotting.
