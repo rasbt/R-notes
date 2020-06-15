@@ -2,6 +2,9 @@
 ================
 Sebastian Raschka
 
+Source file:
+<https://github.com/rasbt/R-notes/blob/master/01-installing-r.Rmd>
+
 # About R
 
   - R is a programming language that is commonly used for statistical
