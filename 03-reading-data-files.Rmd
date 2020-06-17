@@ -1,0 +1,22 @@
+---
+title: "03 -- Reading files"
+author: "Sebastian Raschka"
+date: "6/17/2020"
+output: html_document
+---
+
+Source file: https://github.com/rasbt/R-notes/blob/master/03-reading-data-files.Rmd
+
+# Reading files
+
+- If your CSV file is in your working directory (you can display your working directory path by executing `getcwd()`), you can load it via
+
+    read.csv('myfile.csv')
+
+- However, if the CSV file you want to read is not in your current working directory, this command will fail. If this is personal code that you are not intendin on sharing with anyone else, it doesn't hurt to provide the full path; for example, 
+
+    read.csv('/Users/sebastian/Data/myfile.csv')
+
+- For your convenience, you could also just change your working directory path. Both the default R app and R Studio app have options for that:
+
+![](images/03/change-working-dir-rstudio.png)

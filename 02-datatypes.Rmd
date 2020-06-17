@@ -1,5 +1,5 @@
 ---
-title: "02 -- Basics"
+title: "02 -- Data Types"
 author: Sebastian Raschka
 output:
   github_document:
@@ -8,7 +8,7 @@ output:
     toc_depth: 2
 ---
 
-Source file: https://github.com/rasbt/R-notes/blob/master/02-basics.Rmd
+Source file: https://github.com/rasbt/R-notes/blob/master/02-datatypes.Rmd
 
 # R Resources and Help
 
@@ -32,20 +32,6 @@ my_variable <- 3+5
 my_variable
 ```
 - (In computer science contexts, "showing" some result is often called "printing" due to the history of computers -- back in the day, before computer monitors were invented, results had to be printed on paper.)
-
-# Reading files
-
-- If your CSV file is in your working directory (you can display your working directory path by executing `getcwd()`), you can load it via
-
-    read.csv('myfile.csv')
-
-- However, if the CSV file you want to read is not in your current working directory, this command will fail. If this is personal code that you are not intendin on sharing with anyone else, it doesn't hurt to provide the full path; for example, 
-
-    read.csv('/Users/sebastian/Data/myfile.csv')
-
-- For your convenience, you could also just change your working directory path. Both the default R app and R Studio app have options for that:
-
-![](images/02/change-working-dir-rstudio.png)
 
 # Data Types
 
@@ -138,6 +124,29 @@ typeof(x)
 
 ## Strings / Character Vectors
 
+## Missing Values
+
+- There are two ways to represent missing values in R, NA and NaN
+- NaN stands for Not a Number, and it is used when the output of a mathematical representation cannot be represented by the computer.
+- NA (I assume it stands for Not Available) is used for other cases where a value is unknown (and it's not a NaN); a typical case where you would use a NA is when you collected measurements but didn't record a measurement in a particular case -- in other words, the result is missing.
+
+- The `is.na()` and `is.nan()` functions allow us to test for missing NA and NaN values, respectively:
+
+```{r}
+vector_with_na <- c(NA, 0.1, 0.5)
+is.na(vector_with_na)
+
+vector_with_nan <- c(NaN, 0.1, 0.5)
+is.nan(vector_with_nan)
+```
+
+- Note that an NaN value evaluates to "true" via `is.na()`; however, a NA value does not evaluate to "true" via `is.nan()`:
+
+```{r}
+is.na(vector_with_nan)
+
+is.nan(vector_with_na)
+```
 
 ## Lists
 
@@ -219,37 +228,35 @@ my_matrix <- rbind(1:3, 4:6)
 my_matrix
 ```
 
-# Functions
+## Factors
 
-- Note that in contrast to Python, R doesn't require an explicit `return` call -- if `return` is not used, the R function will return the output of its last expression. For instance, the following two code snippets 
+- Factors are a useful feature for representing categorical data in vector form.
+- Of course, everything can be handled via integer vectors, but it's a nice convenience feature -- you can think of factors as integer vectors on steroids. That is, integer vectors with the integer vectors replaced by labels. (R, in fact, uses an integer vector under the hood for factor vectors.)
 
-```{r}
-mean_squared_error <- function(x, y){
-  mean_diff <- mean(x - y)
-  mean_diff^2
-}
-
-mean_squared_error(c(1, 2, 3), c(1, 2, 5))
-```
-
-and
-
+- Suppose we have the following factor vector containing a bunch of movie ratings:
 
 ```{r}
-mean_squared_error <- function(x, y){
-  mean_diff <- mean(x - y)
-  return(mean_diff^2)
-}
-
-mean_squared_error(c(1, 2, 3), c(1, 2, 5))
+x <- factor(c('great', 'good', 'bad', 'ok', 'good', 'good', 'great'))
+x
 ```
 
-both return `0.4444444`
+- As you can see above, the Levels attribute shows the unique categories.
+- Also, there is the handy `table` function for summarizing the counts per category:
 
-- For your convenience, you can save functions in a separate file and load it into your current R session. E.g., you can save the `mean_squared_error` we created above as a .R file, for example, `mse.R`. Then, you can source the file in your current R session to load the function, a shown in the screenshot below:
+```{r}
+table(x)
+```
 
-![](images/02/load-func.png)
+- As you may recall from my research talks or other lectures, there are two types of categorical data, nominal (unordered) and ordinal (ordered).
+- Models which assume an ordered variable, e.g., ordinal regression models, may require you to specify the order in the factor vector. By default, the unique values in the factor variable are ordered alphabetically.
+- Using the `levels` parameter as shown below lets us define the category order, for example, great > good > ok > bad:
 
-# Developing R Packages
 
-- If you are interested in developing your own R packages (also known as "extensions"), have a look at the official guide available at [https://cran.r-project.org/doc/manuals/r-release/R-exts.html](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
+```{r}
+x <- factor(c('great', 'good', 'bad', 'ok', 'good', 'good', 'great'),
+            levels=c('great', 'good', 'ok', 'bad'))
+x
+table(x)
+```
+
+## Dataframes

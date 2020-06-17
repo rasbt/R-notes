@@ -1,0 +1,45 @@
+---
+title: "04 -- Functions"
+author: "Sebastian Raschka"
+date: "6/17/2020"
+output: html_document
+---
+
+Source file: https://github.com/rasbt/R-notes/blob/master/04-functions.Rmd
+
+# Functions
+
+- Note that in contrast to Python, R doesn't require an explicit `return` call -- if `return` is not used, the R function will return the output of its last expression. For instance, the following two code snippets 
+
+```{r}
+mean_squared_error <- function(x, y){
+  mean_diff <- mean(x - y)
+  mean_diff^2
+}
+
+mean_squared_error(c(1, 2, 3), c(1, 2, 5))
+```
+
+and
+
+
+```{r}
+mean_squared_error <- function(x, y){
+  mean_diff <- mean(x - y)
+  return(mean_diff^2)
+}
+
+mean_squared_error(c(1, 2, 3), c(1, 2, 5))
+```
+
+both return `0.4444444`
+
+- For your convenience, you can save functions in a separate file and load it into your current R session. E.g., you can save the `mean_squared_error` we created above as a .R file, for example, `mse.R`. Then, you can source the file in your current R session to load the function, a shown in the screenshot below:
+
+![](images/04/load-func.png)
+
+# Developing R Packages
+
+- If you are interested in developing your own R packages (also known as "extensions"), have a look at the official guide available at [https://cran.r-project.org/doc/manuals/r-release/R-exts.html](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
+
+# Vectorization

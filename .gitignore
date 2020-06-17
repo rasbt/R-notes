@@ -1,3 +1,4 @@
+*.html
 build.py
 .DS_Store
 
