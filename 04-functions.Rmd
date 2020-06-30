@@ -7,6 +7,9 @@ output: html_document
 
 Source file: https://github.com/rasbt/R-notes/blob/master/04-functions.Rmd
 
+
+
+
 # Functions
 
 - Note that in contrast to Python, R doesn't require an explicit `return` call -- if `return` is not used, the R function will return the output of its last expression. For instance, the following two code snippets 
@@ -37,6 +40,12 @@ both return `0.4444444`
 - For your convenience, you can save functions in a separate file and load it into your current R session. E.g., you can save the `mean_squared_error` we created above as a .R file, for example, `mse.R`. Then, you can source the file in your current R session to load the function, a shown in the screenshot below:
 
 ![](images/04/load-func.png)
+
+# Importing Code
+
+`source()`
+
+
 
 # Developing R Packages
 

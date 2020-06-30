@@ -151,6 +151,8 @@ typeof(my_int)
   - True and False values
   - `TRUE` & `FALSE`, or `T` and `F`
 
+# Data Structures
+
 ## Vectors and Sequences
 
   - Vectors can be created using the `vector()` function. The following
@@ -534,4 +536,78 @@ table(x)
     ## great  good    ok   bad 
     ##     2     3     1     1
 
-## Dataframes
+## Data Frames
+
+  - Data frames are one of the best and distinguishing features of R
+    when it comes to data analysis.
+  - You can think of a data frame as a table (similar to a table in a
+    paper, or a table in an Excel file).
+  - Most data comes in tabular form, which is why data frames are a
+    convenient data container to work with.
+  - Btw. if you have used Python for scientific computing, you have
+    likely encountered Pandas `DataFrame` objects. In fact, Pandas’ data
+    frames were inspired by R.
+  - Data frames look very similar to matrices, however, matrices are
+    mathematical objects (rank-2 tensors) used in linear algebra
+  - Also, in contrast to matrices, a data frame allows us to have
+    columns with different types (and it comes with a descriptive row
+    header)
+  - Overall, you can think of a data frame as a fancy stack of R lists,
+    which comes with a whole set of convenience
+functions.
+
+<!-- end list -->
+
+``` r
+df <- data.frame(MyIntegerVar = 1:4, MyCharVar = c("A", "B", "A", "B"), MyBoolVar = c(T, F, T, T))
+df
+```
+
+    ##   MyIntegerVar MyCharVar MyBoolVar
+    ## 1            1         A      TRUE
+    ## 2            2         B     FALSE
+    ## 3            3         A      TRUE
+    ## 4            4         B      TRUE
+
+  - In case you are working with very long data frames and want to count
+    the columns and rows, you can use the `nrow` and `ncol` functions:
+
+<!-- end list -->
+
+``` r
+nrow(df)
+```
+
+    ## [1] 4
+
+``` r
+ncol(df)
+```
+
+    ## [1] 3
+
+  - Suppose we want to change the row names later; for this, we can use
+    the `names` function and overwrite the data frames `names`
+    attribute:
+
+<!-- end list -->
+
+``` r
+names(df)
+```
+
+    ## [1] "MyIntegerVar" "MyCharVar"    "MyBoolVar"
+
+``` r
+names(df) <- c("A", "B", "C")
+df
+```
+
+    ##   A B     C
+    ## 1 1 A  TRUE
+    ## 2 2 B FALSE
+    ## 3 3 A  TRUE
+    ## 4 4 B  TRUE
+
+  - In practice, we usually construct data frames by loading data from a
+    CSV file, for example. More on that in Chapter 03.
