@@ -1,0 +1,103 @@
+---
+title: "03 -- Selection Syntax"
+author: Sebastian Raschka
+output:
+  github_document:
+    fig_width: 5
+    toc: true
+    toc_depth: 2
+---
+
+Source file: https://github.com/rasbt/R-notes/blob/master/03-selection-syntax.Rmd
+
+# Selection Syntax
+
+
+## Selecting Elements from Vectors and Matrices (Single Bracket Indexing)
+
+- We can use the single brackets `[]` indexing approach to return one or more elements from a vector or data frame, not that it returns the same object as the original.
+
+```{r}
+vec_a <- c("x", "y", "z")
+
+vec_a[1] # return a vector containing the first element
+
+vec_a[1:2] # return a vector containing the first two elements
+```
+
+- We can also combine the single bracket selection approach with logical operators.
+- Suppose we have the following integer vector; we can use the `>=` operator to select all numbers that are equal to or larger than a certain value (here: greater than or equal to 5):
+
+```{r}
+vec_b <- c(1:9)
+vec_b
+
+vec_b[vec_b >= 5] 
+```
+
+- Also, we can chain multiple logical operators; let's select all elements greater than 5 and smaller than 8:
+
+```{r}
+vec_b[(vec_b > 5) & (vec_b < 8)]
+```
+
+
+### How about Matrices?
+
+- Analogous to the vector examples above, we can also use the single bracket notation to select elements and entire rows and columns from matrices. Let's walk through some examples using a simple 3x2 matrix:
+
+```{r}
+my_matrix <- matrix(1:6, 3, 2) # 3x2 matrix
+my_matrix
+```
+
+- Use two values separated by a comma; the first value is the row index, the second value is the column index.
+- E.g., to select the 1st element in the 2nd row, we can do
+
+```{r}
+my_matrix[2, 1]
+```
+
+- To select an entire row, we omit the value after the comma. E.g., to select the 2nd row:
+
+```{r}
+my_matrix[2, ]
+```
+
+- Similarly, we can select an entire column by leaving the row value empty. E.g., to select the 2nd column:
+
+```{r}
+my_matrix[, 2]
+```
+
+- We can also select with logical vectors and matrices. Suppose we have the following matrix with missing values:
+
+```{r}
+my_matrix_with_na = my_matrix # make a copy
+
+my_matrix_with_na[1, 2] <- NA # overwrite element with NA value
+my_matrix_with_na
+```
+
+- We can create a logical matrix, a mask, denoting wether a value is a `NA` or not:
+
+```{r}
+mask <- is.na(my_matrix_with_na)
+mask
+```
+
+- The reason why we call this mask is that it allows us to select us specific values from the original matrix, i.e., all the TRUE values:
+
+```{r}
+my_matrix_with_na[mask]
+```
+
+- Note that we can also invert the selection using the `!` operator (which is more useful in this case, assuming we want to filter out NA values). E.g., we can select all the non-NA values as follows:
+
+```{r}
+!mask # inverted mask 
+```
+
+```{r}
+my_matrix_with_na[!mask]
+```

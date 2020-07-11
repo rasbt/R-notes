@@ -1,11 +1,11 @@
 ---
-title: "03 -- Reading files"
+title: "04 -- Reading files"
 author: "Sebastian Raschka"
 date: "6/17/2020"
 output: html_document
 ---
 
-Source file: https://github.com/rasbt/R-notes/blob/master/03-reading-data-files.Rmd
+Source file: https://github.com/rasbt/R-notes/blob/master/04-reading-data-files.Rmd
 
 # File Reading Basics
 
@@ -166,7 +166,7 @@ character string: if file is not supplied and this is, then data are read from t
 **skipNul**  	
 logical: should nuls be skipped?
 
-## read.csv
+## `read.csv`
 
 - Note that there is also a `read.csv()` function; it is the same as the `read.table()` function, except that 
   - it uses the default value `sep=","` instead of `sep=""` (i.e., the default column separator is a comma instead of a white space).
@@ -189,13 +189,33 @@ df
 - `readLines()`
 - `writeLines()`
 
-# Loading Workspaces
+# Writing and Loading Objects
+
+- Sometimes, it is convenient to save entire R objects. For this, you can use the `dump()` function, which takes as input a vector of different objects. 
+- Suppose we have created two data frame objects, `df_a` and `df_b` via some elaborate process, and we want to save it for use later (or in another session):
+
+```{r}
+df_a <- data.frame(MyIntegerVar = 1:2, MyCharVar = c("A", "B"))
+df_b <- df_a <- data.frame(MyIntegerVar = 5:6, MyCharVar = c("X", "Y"))
+```
 
 
-`load()`
-`dump()`
+- We can save these data frames using `dump()` as follows:
 
-# Binary Files
+```{r}
+dump(c("df_a", "df_b"), file = "my-dataframes.R")
+```
 
-`unserialize()`
-`serialize()`
+- Then, we can use the `source` function to load the data frame objects back into the (/any) R session. 
+```{r}
+# delete objects so we can demonstrate that
+# they are indeed loaded here as an example:
+rm(df_a)
+rm(df_b)
+
+# laod objects from the files on disk
+source("my-dataframes.R")
+df_a
+df_b
+```
+

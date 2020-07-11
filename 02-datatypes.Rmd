@@ -125,6 +125,21 @@ typeof(x)
 ```
 - Note that in contrast to Python, sequences include the endpoint, though (here: 10; Python would return 1 ... 9).
 
+### Dot product
+
+- Be aware that the `*` symbol will perform an element-wise multiplication between two vectors:
+
+```{r}
+x <- c(0.1, 0.2, 0.3)
+x * x
+```
+- To compute the dot product, we need to use the rather awkward looking `%*%` operator:
+
+```{r}
+x %*% x
+```
+
+
 ## Strings / Character Vectors
 
 ## Missing Values
@@ -229,6 +244,22 @@ my_matrix
 ```{r}
 my_matrix <- rbind(1:3, 4:6)
 my_matrix
+```
+
+### Matrix Multiplication
+
+- Note that matrix multiplication may seem a bit weird in R. For instance, using the `*` operator will not perform a matrix multiplication but element-wise multiplication:
+
+```{r}
+my_matrix <- matrix(1:6, 3, 2)
+my_matrix
+my_matrix * my_matrix
+```
+
+- To perform a matrix multiplication, we need to use the `%*%` operator (note the `t` is the transpose function, which we use in this simple example to quickly create a matrix with the right shape for multiplication):
+
+```{r}
+t(my_matrix) %*% my_matrix
 ```
 
 ## Factors
