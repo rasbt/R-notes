@@ -2,7 +2,11 @@
 title: "05 -- Functions"
 author: "Sebastian Raschka"
 date: "6/17/2020"
-output: html_document
+output:
+  github_document:
+    fig_width: 5
+    toc: true
+    toc_depth: 2
 ---
 
 Source file: https://github.com/rasbt/R-notes/blob/master/05-functions.Rmd
