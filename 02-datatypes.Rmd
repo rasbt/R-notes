@@ -41,7 +41,7 @@ my_variable
 
 - You may be used to referring to real numbers as floats (which may refer to single-precision or double-precision floats) in other programming languages. Often, double-precision floats are also abbreviated as "doubles."
 - In the R community, people also often refer to float (and doubles) as `numeric` data type. Here, `numeric` is the class for creating such numbers. More precisely, by default, R will typically use double-precision real numbers (if you install the 64 bit version of R, which I recommend). In R, when you hear `numeric`, you can think of it as more of an umbrella term for both single- and double-precision floats.
-- You can check the data type via the `typeof()` function. Note that by default, numbers are always double-precision floats by default:
+- You can check the class of an object using the `class()` function; and you can check gthe data type via the `typeof()` function. Note that by default, numbers are always double-precision floats by default:
 
 ```{r}
 typeof(1)
@@ -113,10 +113,30 @@ typeof(x)
 ```{r}
 x <- c(1L, 0.2, 0.3, 1L, 10L)
 x
+class(x)
+typeof(x)
+```
+- Furthermore, if we mix types, R will find a data type, as a common denominator, that can represent all values in the vector. For instance, if we have a character in the vector, it will convert everything to a character vector:
+
+```{r}
+x <- c(5, "a")
+x
+class(x)
+typeof(x)
+```
+
+- For the same reasons mentioned above, a vector that contains integers and boolean values, will be cast into an integer vector:
+
+```{r}
+x <- c(2, TRUE, FALSE)
+x
+class(x)
 typeof(x)
 ```
 
 - I highly recommend avoiding mixing types in vectors; if you would like to mix different types, please see the section on "lists" below.
+
+### Sequence vectors
 
 - For creating sequence vectors, similar to Python's range, we can use the colon operator as shown below:
 

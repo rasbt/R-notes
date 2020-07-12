@@ -66,9 +66,22 @@ The function arguments are as follows:
 
 ```{r}
 df <- read.table(file = 'data/iris.csv', header = FALSE, sep = ',', skip = 1)
+class(df)
 df
 ```
-- Optionally, you can also manually assign column names using the `col.names` attribute:
+
+- By the way, the `head()` and `tail()` functions are super handy when working with data frames. The `head()` function, using default values, prints the first 6 rows of the data frame (very useful when working when very large data frames and you want to double check that the columns have been parsed correctly):
+
+```{r}
+head(df)
+```
+- Similarly, the `tail()` function shows the last 6 rows of the data frame:
+
+```{r}
+tail(df)
+```
+
+- After this brief `head` and `tail` discursion,  to the `read.table()` example above. Optionally, you can also manually assign column names using the `col.names` attribute:
 
 ```{r}
 column_names <- c("sepal length", "sepal width", "petal length", "petal width", "species")
@@ -182,6 +195,8 @@ logical: should nuls be skipped?
 df <- read.csv(file = 'data/iris.csv', header = FALSE, skip = 1, col.names = column_names)
 df
 ```
+
+
 
 ## Writing files
 

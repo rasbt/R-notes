@@ -101,3 +101,69 @@ my_matrix_with_na[mask]
 ```{r}
 my_matrix_with_na[!mask]
 ```
+
+## Selecting from Data Frames
+
+- Suppose we have the following data frame:
+
+```{r}
+df <- data.frame(MyIntegerVar = 1:4, MyCharVar = c("A", "B", "A", "B"), MyBoolVar = c(T, F, T, T))
+df
+```
+
+- To get the 3rd row, we can use the same bracket notation as above for matrices:
+
+```{r}
+df[3, ]
+```
+
+- Similarly, we can select the 3rd column as follows:
+
+```{r}
+df[, 3] # returns a vector
+
+# or
+
+df[3] # returns a data frame with 1 column
+```
+
+### Different Ways for Selecting Columns from a Data Frame
+
+- However, when working with data frames, we can take advantage of the column names when selecting columns. E.g., to select the 3rd column similar to `df[3]`, we can do the following:
+
+```{r}
+df['MyBoolVar']
+```
+
+- And to select the third column similar to `df[, 3]` -- returning a vector instead of a 1-column data frame -- we can use the `$` symbol as follows:
+
+```{r}
+df$MyBoolVar
+```
+
+
+### Selecting Elements from a Data Frame
+
+- Note that the selection syntax works similar to a matrix; to select the 1st element of the 2nd row, we can do
+
+```{r}
+df[2, 1]
+```
+- however, we can also use the column name approach:
+
+```{r}
+df[2, 'MyIntegerVar']
+```
+or
+
+```{r}
+df$MyIntegerVar[2]
+```
+
+### Conditional Selection
+
+- Also, similar to vectors and matrices, we can use conditional statements to select values. For instance, we can use the following to select all entries for which `MyIntegerVar` is greater than 1 and `MyBoolVar` is true
+
+```{r}
+df[(df['MyIntegerVar'] > 1) & (df['MyBoolVar'] == TRUE), ] 
+```
