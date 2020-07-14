@@ -98,6 +98,12 @@ summary):
 
 ``` r
 df <- read.table(file = 'data/iris.csv', header = FALSE, sep = ',', skip = 1)
+class(df)
+```
+
+    ## [1] "data.frame"
+
+``` r
 df
 ```
 
@@ -253,8 +259,46 @@ df
     ## 149 6.2 3.4 5.4 2.3  2
     ## 150 5.9 3.0 5.1 1.8  2
 
-  - Optionally, you can also manually assign column names using the
-    `col.names`
+  - By the way, the `head()` and `tail()` functions are super handy when
+    working with data frames. The `head()` function, using default
+    values, prints the first 6 rows of the data frame (very useful when
+    working when very large data frames and you want to double check
+    that the columns have been parsed correctly):
+
+<!-- end list -->
+
+``` r
+head(df)
+```
+
+    ##    V1  V2  V3  V4 V5
+    ## 1 5.1 3.5 1.4 0.2  0
+    ## 2 4.9 3.0 1.4 0.2  0
+    ## 3 4.7 3.2 1.3 0.2  0
+    ## 4 4.6 3.1 1.5 0.2  0
+    ## 5 5.0 3.6 1.4 0.2  0
+    ## 6 5.4 3.9 1.7 0.4  0
+
+  - Similarly, the `tail()` function shows the last 6 rows of the data
+    frame:
+
+<!-- end list -->
+
+``` r
+tail(df)
+```
+
+    ##      V1  V2  V3  V4 V5
+    ## 145 6.7 3.3 5.7 2.5  2
+    ## 146 6.7 3.0 5.2 2.3  2
+    ## 147 6.3 2.5 5.0 1.9  2
+    ## 148 6.5 3.0 5.2 2.0  2
+    ## 149 6.2 3.4 5.4 2.3  2
+    ## 150 5.9 3.0 5.1 1.8  2
+
+  - After this brief `head` and `tail` discursion, to the `read.table()`
+    example above. Optionally, you can also manually assign column names
+    using the `col.names`
 attribute:
 
 <!-- end list -->

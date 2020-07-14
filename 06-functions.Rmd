@@ -1,5 +1,5 @@
 ---
-title: "05 -- Functions"
+title: "06 -- Functions"
 author: "Sebastian Raschka"
 date: "6/17/2020"
 output:
@@ -9,7 +9,7 @@ output:
     toc_depth: 2
 ---
 
-Source file: https://github.com/rasbt/R-notes/blob/master/05-functions.Rmd
+Source file: https://github.com/rasbt/R-notes/blob/master/06-functions.Rmd
 
 
 

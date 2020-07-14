@@ -70,8 +70,10 @@ my_variable
     R, which I recommend). In R, when you hear `numeric`, you can think
     of it as more of an umbrella term for both single- and
     double-precision floats.
-  - You can check the data type via the `typeof()` function. Note that
-    by default, numbers are always double-precision floats by default:
+  - You can check the class of an object using the `class()` function;
+    and you can check gthe data type via the `typeof()` function. Note
+    that by default, numbers are always double-precision floats by
+    default:
 
 <!-- end list -->
 
@@ -219,6 +221,62 @@ x
     ## [1]  1.0  0.2  0.3  1.0 10.0
 
 ``` r
+class(x)
+```
+
+    ## [1] "numeric"
+
+``` r
+typeof(x)
+```
+
+    ## [1] "double"
+
+  - Furthermore, if we mix types, R will find a data type, as a common
+    denominator, that can represent all values in the vector. For
+    instance, if we have a character in the vector, it will convert
+    everything to a character vector:
+
+<!-- end list -->
+
+``` r
+x <- c(5, "a")
+x
+```
+
+    ## [1] "5" "a"
+
+``` r
+class(x)
+```
+
+    ## [1] "character"
+
+``` r
+typeof(x)
+```
+
+    ## [1] "character"
+
+  - For the same reasons mentioned above, a vector that contains
+    integers and boolean values, will be cast into an integer vector:
+
+<!-- end list -->
+
+``` r
+x <- c(2, TRUE, FALSE)
+x
+```
+
+    ## [1] 2 1 0
+
+``` r
+class(x)
+```
+
+    ## [1] "numeric"
+
+``` r
 typeof(x)
 ```
 
@@ -227,6 +285,8 @@ typeof(x)
   - I highly recommend avoiding mixing types in vectors; if you would
     like to mix different types, please see the section on “lists”
     below.
+
+### Sequence vectors
 
   - For creating sequence vectors, similar to Python’s range, we can use
     the colon operator as shown below:

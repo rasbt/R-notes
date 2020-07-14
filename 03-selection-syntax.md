@@ -177,3 +177,133 @@ my_matrix_with_na[!mask]
 ```
 
     ## [1] 1 2 3 5 6
+
+## Selecting from Data Frames
+
+  - Suppose we have the following data
+frame:
+
+<!-- end list -->
+
+``` r
+df <- data.frame(MyIntegerVar = 1:4, MyCharVar = c("A", "B", "A", "B"), MyBoolVar = c(T, F, T, T))
+df
+```
+
+    ##   MyIntegerVar MyCharVar MyBoolVar
+    ## 1            1         A      TRUE
+    ## 2            2         B     FALSE
+    ## 3            3         A      TRUE
+    ## 4            4         B      TRUE
+
+  - To get the 3rd row, we can use the same bracket notation as above
+    for matrices:
+
+<!-- end list -->
+
+``` r
+df[3, ]
+```
+
+    ##   MyIntegerVar MyCharVar MyBoolVar
+    ## 3            3         A      TRUE
+
+  - Similarly, we can select the 3rd column as follows:
+
+<!-- end list -->
+
+``` r
+df[, 3] # returns a vector
+```
+
+    ## [1]  TRUE FALSE  TRUE  TRUE
+
+``` r
+# or
+
+df[3] # returns a data frame with 1 column
+```
+
+    ##   MyBoolVar
+    ## 1      TRUE
+    ## 2     FALSE
+    ## 3      TRUE
+    ## 4      TRUE
+
+### Different Ways for Selecting Columns from a Data Frame
+
+  - However, when working with data frames, we can take advantage of the
+    column names when selecting columns. E.g., to select the 3rd column
+    similar to `df[3]`, we can do the following:
+
+<!-- end list -->
+
+``` r
+df['MyBoolVar']
+```
+
+    ##   MyBoolVar
+    ## 1      TRUE
+    ## 2     FALSE
+    ## 3      TRUE
+    ## 4      TRUE
+
+  - And to select the third column similar to `df[, 3]` – returning a
+    vector instead of a 1-column data frame – we can use the `$` symbol
+    as follows:
+
+<!-- end list -->
+
+``` r
+df$MyBoolVar
+```
+
+    ## [1]  TRUE FALSE  TRUE  TRUE
+
+### Selecting Elements from a Data Frame
+
+  - Note that the selection syntax works similar to a matrix; to select
+    the 1st element of the 2nd row, we can do
+
+<!-- end list -->
+
+``` r
+df[2, 1]
+```
+
+    ## [1] 2
+
+  - however, we can also use the column name approach:
+
+<!-- end list -->
+
+``` r
+df[2, 'MyIntegerVar']
+```
+
+    ## [1] 2
+
+or
+
+``` r
+df$MyIntegerVar[2]
+```
+
+    ## [1] 2
+
+### Conditional Selection
+
+  - Also, similar to vectors and matrices, we can use conditional
+    statements to select values. For instance, we can use the following
+    to select all entries for which `MyIntegerVar` is greater than 1 and
+    `MyBoolVar` is true
+
+<!-- end list -->
+
+``` r
+df[(df['MyIntegerVar'] > 1) & (df['MyBoolVar'] == TRUE), ] 
+```
+
+    ##   MyIntegerVar MyCharVar MyBoolVar
+    ## 3            3         A      TRUE
+    ## 4            4         B      TRUE
