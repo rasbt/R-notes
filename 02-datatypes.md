@@ -330,6 +330,16 @@ x %*% x
 
 ## Strings / Character Vectors
 
+  - To join two character vectors, we can use the `paste` function:
+
+<!-- end list -->
+
+``` r
+paste("abc", "def", sep="")
+```
+
+    ## [1] "abcdef"
+
 ## Missing Values
 
   - There are two ways to represent missing values in R, NA and NaN

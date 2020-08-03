@@ -15,11 +15,15 @@ Source file: https://github.com/rasbt/R-notes/blob/master/04-reading-data-files.
 
 - If your CSV file is in your working directory (you can display your working directory path by executing `getcwd()`), you can load it via
 
-    read.csv('myfile.csv')
+```{r}
+read.csv('myfile.csv')
+```
 
 - However, if the CSV file you want to read is not in your current working directory, this command will fail. If this is personal code that you are not intending on sharing with anyone else, it doesn't hurt to provide the full path; for example, 
 
-    read.csv('/Users/sebastian/Data/myfile.csv')
+```{r}
+read.csv('/Users/sebastian/Data/myfile.csv')
+```
 
 - For your convenience, you could also just change your working directory path. Both the default R app and R Studio app have options for that:
 
@@ -33,9 +37,10 @@ Source file: https://github.com/rasbt/R-notes/blob/master/04-reading-data-files.
 - You can get detailed information about the `read.table` function by executing `help(read.table)` or visiting the documentation website at https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table
 - Here, we are going to focus on the basics, which are the following (including their defaults), but I recommend reading the (short) documentation mentioned above so that you know the other important options, which you will need rather sooner than later in your everyday practice when working with real-world data.
 
-```
+```{r}
 read.table(file, header = FALSE, sep = "", ...
 ```
+
 The function arguments are as follows:
   - `file`: the path to the file you want to read
   - `header`: a TRUE or FALSE value denoting whether your file has column names provided in the file
