@@ -182,3 +182,29 @@ for(i in seq_along(vec)) {
   print(vec[i])
 }
 ```
+
+
+## Loop functions / apply functions
+
+- The so-called `apply` functions are functions that allow us to apply a function to each element in a vector or list. They are technically not control structures, but they let us achieve what a for-loop does but in a more compact form.
+
+- Note that there is no performance advantage of using these apply functions over regular for-loops, because these apply functions themselves are implemented using for-loops; their main advantage is that they save us some work and typing.
+
+- `lapply`: loops over a list and applies a function to each element. 
+- The following example demonstrates how we can use the `lapply` function to compute the sum of each vector contained in a list:
+
+```{r}
+data <- list(c(1., 2., 3.), c(4., 5., 6., 7.))
+lapply(data, sum)
+```
+
+- Note that `lapply` returns a list, but it can be applied to arrays or vectors as well -- `lapply` converts the input object to a list internally.
+- `sapply`, short for "simplified apply" is similar to a `lapply` but returns a vector if possible. (The "simplification" here means that if each element is a single element of the same type, then the resulting list can be simplified into a vector.)
+
+
+```{r}
+data <- list(c(1., 2., 3.), c(4., 5., 6., 7.))
+sapply(data, sum)
+```
+
+- there are more variants, such as `apply` (for matrices), `tapply` (applying functions to ragged arrays), and `mapply` (a multivariate version of `lapply` for working with multiple lists) that you can check out using the help function (e.g., `?apply` to learn more about the `apply` function)

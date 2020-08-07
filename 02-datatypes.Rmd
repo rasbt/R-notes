@@ -168,6 +168,25 @@ x %*% x
 paste("abc", "def", sep="")
 ```
 
+- We can do C-style formatting using the `sprintf` function. For example,
+
+```{r}
+sprintf("%d + %d = %d", 1, 2, 3)
+```
+
+- The notation description is as follows:
+
+```
+%s	a string
+%d	an integer
+%0xd	an integer padded with x leading zeros
+%f	decimal notation with six decimals
+%.xf	floating point number with x digits after decimal point
+%e	compact scientific notation, e in the exponent
+%E	compact scientific notation, E in the exponent
+%g	compact decimal or scientific notation (with e)
+```
+
 ## Missing Values
 
 - There are two ways to represent missing values in R, NA and NaN
@@ -288,6 +307,19 @@ my_matrix * my_matrix
 t(my_matrix) %*% my_matrix
 ```
 
+### Other Handy Matrix Functions
+
+- Particularly useful are the functions `rowSums`, `rowMeans`, 'colSums`, and 'colMeans`, which are functions that can carry out the respective computations very efficiently. Efficiently here means that it both saves us a lot of typing effort and is also implemented in a way optimized for speed (compared to using for-loops, which are a topic discussed in chapter 05).
+
+```{r}
+my_matrix <- matrix(1:6, 3, 2)
+my_matrix
+```
+
+```{r}
+rowSums(my_matrix)
+```
+
 ## Factors
 
 - Factors are a useful feature for representing categorical data in vector form.
@@ -351,3 +383,40 @@ df
 ```
 
 - In practice, we usually construct data frames by loading data from a CSV file, for example. More on that in Chapter 03.
+
+- There are useful functions for data frames that we can use in certain contexts. For example, there are the `colSums` and `colMeans` function to compute data frame sums and means:
+
+```{r}
+df <- data.frame(MyIntegerVar1 = 1:4, MyIntegerVar2 = 5:8)
+df
+```
+
+```{r}
+colSums(df)
+colMeans(df)
+```
+
+- Similarly, there exist `rowSums` and `rowMeans` functions:
+
+```{r}
+rowSums(df)
+rowMeans(df)
+```
+
+## Tables
+
+A very useful data structure in R are tables created via the `tables` function. Tables provide us with counts for each unique element in a vector. For example
+
+c
+
+```{r}
+letters <- c("a", "b", "a", "a", "b", "b", "a", "d", "f", "f", "f")
+table(letters)
+```
+
+We can also use tables to extract the count for a specific item using the square-bracket selection syntax (more on that in chapter 03):
+
+```{r}
+numbers <- c(1, 2, 1, 1, 2, 2, 1, 4, 6, 6, 6)
+t <- table(numbers)
+```

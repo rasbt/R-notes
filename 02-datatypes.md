@@ -340,6 +340,30 @@ paste("abc", "def", sep="")
 
     ## [1] "abcdef"
 
+  - We can do C-style formatting using the `sprintf` function. For
+    example,
+
+<!-- end list -->
+
+``` r
+sprintf("%d + %d = %d", 1, 2, 3)
+```
+
+    ## [1] "1 + 2 = 3"
+
+  - The notation description is as follows:
+
+<!-- end list -->
+
+    %s  a string
+    %d  an integer
+    %0xd    an integer padded with x leading zeros
+    %f  decimal notation with six decimals
+    %.xf    floating point number with x digits after decimal point
+    %e  compact scientific notation, e in the exponent
+    %E  compact scientific notation, E in the exponent
+    %g  compact decimal or scientific notation (with e)
+
 ## Missing Values
 
   - There are two ways to represent missing values in R, NA and NaN
@@ -606,6 +630,33 @@ t(my_matrix) %*% my_matrix
     ## [1,]   14   32
     ## [2,]   32   77
 
+### Other Handy Matrix Functions
+
+  - Particularly useful are the functions `rowSums`, `rowMeans`,
+    ’colSums`, and 'colMeans`, which are functions that can carry out
+    the respective computations very efficiently. Efficiently here means
+    that it both saves us a lot of typing effort and is also implemented
+    in a way optimized for speed (compared to using for-loops, which are
+    a topic discussed in chapter 05).
+
+<!-- end list -->
+
+``` r
+my_matrix <- matrix(1:6, 3, 2)
+my_matrix
+```
+
+    ##      [,1] [,2]
+    ## [1,]    1    4
+    ## [2,]    2    5
+    ## [3,]    3    6
+
+``` r
+rowSums(my_matrix)
+```
+
+    ## [1] 5 7 9
+
 ## Factors
 
   - Factors are a useful feature for representing categorical data in
@@ -749,3 +800,75 @@ df
 
   - In practice, we usually construct data frames by loading data from a
     CSV file, for example. More on that in Chapter 03.
+
+  - There are useful functions for data frames that we can use in
+    certain contexts. For example, there are the `colSums` and
+    `colMeans` function to compute data frame sums and means:
+
+<!-- end list -->
+
+``` r
+df <- data.frame(MyIntegerVar1 = 1:4, MyIntegerVar2 = 5:8)
+df
+```
+
+    ##   MyIntegerVar1 MyIntegerVar2
+    ## 1             1             5
+    ## 2             2             6
+    ## 3             3             7
+    ## 4             4             8
+
+``` r
+colSums(df)
+```
+
+    ## MyIntegerVar1 MyIntegerVar2 
+    ##            10            26
+
+``` r
+colMeans(df)
+```
+
+    ## MyIntegerVar1 MyIntegerVar2 
+    ##           2.5           6.5
+
+  - Similarly, there exist `rowSums` and `rowMeans` functions:
+
+<!-- end list -->
+
+``` r
+rowSums(df)
+```
+
+    ## [1]  6  8 10 12
+
+``` r
+rowMeans(df)
+```
+
+    ## [1] 3 4 5 6
+
+## Tables
+
+A very useful data structure in R are tables created via the `tables`
+function. Tables provide us with counts for each unique element in a
+vector. For example
+
+c
+
+``` r
+letters <- c("a", "b", "a", "a", "b", "b", "a", "d", "f", "f", "f")
+table(letters)
+```
+
+    ## letters
+    ## a b d f 
+    ## 4 3 1 3
+
+We can also use tables to extract the count for a specific item using
+the square-bracket selection syntax (more on that in chapter 03):
+
+``` r
+numbers <- c(1, 2, 1, 1, 2, 2, 1, 4, 6, 6, 6)
+t <- table(numbers)
+```
